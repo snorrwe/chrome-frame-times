@@ -1,6 +1,3 @@
 chrome.action.onClicked.addListener(async (tab) => {
-    console.log("pls");
-    chrome.tabs.sendMessage(tab.id, { asd: "basd" });
+    chrome.tabs.sendMessage(tab.id, {});
 });
-
-console.log("hello");

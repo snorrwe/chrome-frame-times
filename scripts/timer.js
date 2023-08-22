@@ -1,3 +1,6 @@
+var frameTimes = [];
+var last = Date.now();
+
 function __frameTime() {
     const now = Date.now();
     if (!window.frameTimes) window.frameTimes = [];
@@ -5,14 +8,24 @@ function __frameTime() {
 
     window.frameTimes.push(now - window.last);
     window.last = now;
-    console.log(window.frameTimes[window.frameTimes.length - 1]);
     if (window.enabled) requestAnimationFrame(__frameTime);
+    else {
+        // save data
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(
+            new Blob([JSON.stringify(window.frameTimes, null, 0)], {
+                type: `text/plain`,
+            }),
+        );
+        a.download = "frame-times.json";
+        a.click();
+        frameTimes.length = 0;
+    }
 }
 
 chrome.runtime.onMessage.addListener(function() {
-    console.log("msg");
     window.enabled = !window.enabled;
     if (window.enabled) requestAnimationFrame(__frameTime);
     return true;
 });
-console.log("Hello timer");
+console.log("Timer initilized");
