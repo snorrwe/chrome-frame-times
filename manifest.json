@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Perf timer",
+  "version": "1.0",
+  "description": "Log frame times",
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["scripts/timer.js"]
+    }
+  ],
+
+  "icons": {
+    "32": "images/32.png"
+  },
+  "action": {},
+  "permissions": ["scripting", "activeTab"]
+}
