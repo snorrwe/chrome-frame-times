@@ -1,5 +1,4 @@
 var frameTimes = [];
-var last = Date.now();
 
 function __frameTime(now) {
     if (!window.frameTimes) window.frameTimes = [];
