@@ -1,10 +1,9 @@
 var frameTimes = [];
 var last = Date.now();
 
-function __frameTime() {
-    const now = Date.now();
+function __frameTime(now) {
     if (!window.frameTimes) window.frameTimes = [];
-    if (!window.last) window.last = Date.now();
+    if (!window.last) window.last = now;
 
     window.frameTimes.push(now - window.last);
     window.last = now;
