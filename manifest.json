@@ -16,6 +16,10 @@
   "icons": {
     "32": "images/32.png"
   },
-  "action": {},
+  "action": {
+    "defaultIcon": {
+      "32": "images/32.png"
+    }
+  },
   "permissions": ["scripting", "activeTab"]
 }
