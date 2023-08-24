@@ -10,10 +10,11 @@ function __frameTime(now) {
     else {
         // save data
         const a = document.createElement("a");
+        __frameTimer.frameTimes.shift(); // discard the first element, it's just noise
         a.href = URL.createObjectURL(
             new Blob([JSON.stringify(__frameTimer.frameTimes, null, 0)], {
                 type: `text/plain`,
-            }),
+            })
         );
         a.download = "frame-times.json";
         a.click();
