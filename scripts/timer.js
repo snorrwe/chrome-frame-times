@@ -11,14 +11,24 @@ function __frameTime(now) {
         // save data
         const a = document.createElement("a");
         __frameTimer.frameTimes.shift(); // discard the first element, it's just noise
+        const payload = {
+            frames: __frameTimer.frameTimes,
+            userAgent: navigator.userAgent,
+            gpu: navigator.gpu,
+            deviceMemoryGb: navigator.deviceMemory,
+            hardwareConcurrency: navigator.hardwareConcurrency,
+            platform: navigator.userAgentData.platform,
+            mobile: navigator.userAgentData.mobile,
+            brands: navigator.userAgentData.brands,
+        };
+        __frameTimer.frameTimes.length = 0;
         a.href = URL.createObjectURL(
-            new Blob([JSON.stringify(__frameTimer.frameTimes, null, 0)], {
+            new Blob([JSON.stringify(payload, null, 0)], {
                 type: `text/plain`,
-            })
+            }),
         );
         a.download = "frame-times.json";
         a.click();
-        __frameTimer.frameTimes.length = 0;
     }
 }
 
