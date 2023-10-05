@@ -12,6 +12,7 @@ function __frameTime(now) {
         const a = document.createElement("a");
         __frameTimer.frameTimes.shift(); // discard the first element, it's just noise
         const payload = {
+            url: window.location.href,
             frames: __frameTimer.frameTimes,
             userAgent: navigator.userAgent,
             gpu: navigator.gpu,
